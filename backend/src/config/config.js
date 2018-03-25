@@ -26,7 +26,7 @@ module.exports = {
         "username": "root",
         "password": "123456",
         "database": "shopback",
-        "host": "localhost",
+        host: process.env.DATABASE_HOST || '127.0.0.1',
         "dialect": "mysql",
         "timezone": "+00:00",
         "define": {
@@ -47,7 +47,7 @@ module.exports = {
         username: process.env.DB_USERNAME,
         password: process.env.DB_PASSWORD,
         database: process.env.DB_NAME,
-        host: process.env.DB_HOSTNAME,
+        host: process.env.DATABASE_HOST || '127.0.0.1',
         dialect: 'mysql',
         timezone: "+00:00",
 

@@ -1,0 +1,75 @@
+
+.home-layout .trigger {
+    font-size: 18px;
+    line-height: 64px;
+    padding: 0 24px;
+    cursor: pointer;
+    transition: color .3s;
+}
+
+.home-layout .trigger:hover {
+    color: #1890ff;
+}
+
+.home-layout .logo {
+    height: 32px;
+    background: rgba(255,255,255,.2);
+    margin: 16px;
+}
+
+.app__content{
+	    height: 100%;
+
+}
+.ant-layout{
+		    height: 100%;
+
+}
+
+.app__content .ant-back-top {
+    bottom: 100px;
+}
+.app__content .ant-back-top-inner {
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    border-radius: 4px;
+    background-color: #1088e9;
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+}
+
+.app__content .logo {
+    width: 120px;
+    height: 31px;
+    background: rgba(255,255,255,.2);
+    margin: 16px 28px 16px 0;
+}
+.ant-list-item-action{
+	cursor: pointer;
+}
+
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  text-align: center;
+}
+
+.bg { 
+    /* The image used */
+    background-image: url("image/background-why.jpg");
+
+    /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+

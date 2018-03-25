@@ -1,0 +1,55 @@
+
+html, body, #root {
+  height: 100%;
+}
+
+.app__content{
+  height: 100%;
+
+}
+.ant-layout{
+  height: 100%;
+
+}
+.app__content .logo {
+  width: 120px;
+  height: 31px;
+  background: rgba(255,255,255,.2);
+  margin: 16px 28px 16px 0;
+}
+.ant-list-item-action{
+  cursor: pointer;
+}
+
+
+.login-form {
+  max-width: 300px;
+}
+.login-form-forgot {
+  float: right;
+}
+.login-form-button {
+  width: 100%;
+}
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  text-align: center;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("image/background-why.jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+

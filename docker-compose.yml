@@ -1,0 +1,26 @@
+version: '2'
+services:
+  security:
+    build: ./backend
+    ports:
+     - "6969:6969"
+    depends_on:
+     - db
+    environment:
+     - DATABASE_HOST=db
+    volumes:
+     - ./backend/src:/app/backend
+  db:
+    build: ./database-service
+  audience:
+    build: ./audience
+    volumes:
+      - ./audience/src:/app/audience
+    ports:
+      - "3000:3000"
+  admin:
+    build: ./admin
+    volumes:
+     - ./admin/src:/app/admin
+    ports:
+     - "3001:3001"

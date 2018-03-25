@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Row, Col, Form, Icon, Input, Button, DatePicker, List, Avatar, Card, Rate, message, Checkbox} from 'antd';
+import {Row, Col, Form, Icon, Input, Button, List, Avatar, Card, Rate, message, Checkbox} from 'antd';
 import './QuestionPage.css'
 import {questionActions} from "../_actions";
 import moment from 'moment';
@@ -239,7 +239,6 @@ class QuestionPage extends React.PureComponent {
             </span>
         );
 
-        const {getFieldDecorator} = this.props.form;
 
         return (
             <div>

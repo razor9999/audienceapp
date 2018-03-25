@@ -23,7 +23,7 @@ describe('user login page and create event', function () {
     });
 
 
-    it('Create a new user then login and create a new event then get list of event ', (done) => {
+    it('Create a new user then login and create a new event', (done) => {
         this.models.User.create({username: 'myusername1', password: '123456'}).bind(this).then((user) => {
             request(app)
                 .post('/users/login')
@@ -35,9 +35,9 @@ describe('user login page and create event', function () {
                 .expect('Content-Type', /json/)
                 .end((err, res) => {
                     if (err) done(err);
-                    console.log(res.body);
+                    //console.log(res.body);
                     expect(res.body).have.property('token')
-
+                    // create event
                     request(app)
 
                         .post('/events/create')
@@ -52,39 +52,13 @@ describe('user login page and create event', function () {
                         })
                         .expect(200)
                         .expect('Content-Type', /json/)
-                        .end((errEvent, resEvent) => {
+                        .end((err, res) => {
                             if (err) done(err);
-                            console.log(res.body);
-                            expect(resEvent.body).have.property('code')
-                            expect(resEvent.body.code).to.equal('HHHHH')
-                            done()
-                            //
+                            //console.log(res.body);
+                            expect(res.body).have.property('code')
+                            expect(res.body.code).to.equal('HHHHH')
                             // create event
-                            // done()
-                            // get all event
-                            request(app)
-                                .get('/events')
-                                .set({'Authorization': 'Bearer ' + res.body.token})
-
-                                .send({
-                                    "code": "HHHHH",
-                                    "from": '2018-03-14',
-                                    "to": '2018-04-14',
-                                    "UserId": user.dataValues.id
-                                })
-                                .expect(200)
-                                .expect('Content-Type', /json/)
-                                .end((err, res) => {
-                                    if (err) done(err);
-                                    console.log(res.body);
-                                    expect(res.body).have.property('entities')
-                                    expect(res.body).have.property('pageIndex')
-                                    expect(res.body.pageIndex).to.equal(0)
-
-                                    done()
-                                    // get all event
-                                });
-
+                            done()
                         });
 
                 });

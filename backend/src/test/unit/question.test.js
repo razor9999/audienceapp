@@ -21,16 +21,16 @@ describe('models/question', function () {
     });
 
     describe('create', function () {
-        it('creates a Question ', function () {
-            return this.User.create({username: 'johndoe1', password: '123456'}).bind(this).then(function (user) {
-                return this.Event.create({
+        it('creates a Question ', function (done) {
+             this.User.create({username: 'johndoe1', password: '123456'}).bind(this).then(function (user) {
+                 this.Event.create({
                     code: 'MYCODE1',
                     from: "2018-03-25",
                     to: '2018-04-25',
                     UserId: user.id
                 })
                     .then((event) => {
-                        console.log(event);
+                        //console.log(event);
                         return this.Question.create({
                             content: 'Hello the first question',
                             EventId: event.dataValues.id,
@@ -38,6 +38,7 @@ describe('models/question', function () {
                             createdBy: 'Anonymous'
                         }).then((question) => {
                             expect(question.dataValues.content).to.equal('Hello the first question');
+                            done()
                         })
 
                     });

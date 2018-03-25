@@ -25,6 +25,7 @@
     "mysql": "^2.15.0",
     "pg": "^6.1.0",
     "pug": "^2.0.0-rc.4",
+    "query-string": "^6.0.0",
     "sequelize": "^3.23.6",
     "sequelize-cli": "^3.1.0",
     "sequelize-simple-pagination": "0.0.3",

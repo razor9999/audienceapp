@@ -4,6 +4,7 @@ var app = require('../../app');
 var Bluebird = require('bluebird');
 var expect = require('expect.js');
 var request = require('supertest');
+var queryString = require('query-string');
 
 describe('user login page and create event', function () {
     before(() => {
@@ -23,7 +24,7 @@ describe('user login page and create event', function () {
     });
 
 
-    it('Create a new user then login and create a new event', (done) => {
+    it('Create a new user then login and create a new event then get list of event ', (done) => {
         this.models.User.create({username: 'myusername1', password: '123456'}).bind(this).then((user) => {
             request(app)
                 .post('/users/login')
@@ -35,9 +36,9 @@ describe('user login page and create event', function () {
                 .expect('Content-Type', /json/)
                 .end((err, res) => {
                     if (err) done(err);
-                    console.log(res.body);
+                    //console.log(res.body);
                     expect(res.body).have.property('token')
-                    // create event
+
                     request(app)
 
                         .post('/events/create')
@@ -52,13 +53,41 @@ describe('user login page and create event', function () {
                         })
                         .expect(200)
                         .expect('Content-Type', /json/)
-                        .end((err, res) => {
+                        .end((errEvent, resEvent) => {
                             if (err) done(err);
-                            console.log(res.body);
-                            expect(res.body).have.property('code')
-                            expect(res.body.code).to.equal('HHHHH')
+                            //console.log(res.body);
+                            expect(resEvent.body).have.property('code')
+                            expect(resEvent.body.code).to.equal('HHHHH')
+                            //
                             // create event
-                            done()
+                            // done()
+                            // get all event
+                            let buildUrl ='/events?'+queryString.stringify({
+                                pageIndex: 0,
+                                pageSize: 10,
+                                current:1,
+                                orders: JSON.stringify([['createdAt', 'desc']]),
+
+                            })
+                            console.log(buildUrl)
+                            request(app)
+                                .get(buildUrl)
+                                .set({'Authorization': 'Bearer ' + res.body.token})
+
+                                .send()
+                                .expect(200)
+                                .expect('Content-Type', /json/)
+                                .end((err, res) => {
+                                    if (err) done(err);
+                                    //console.log(res.body);
+                                    expect(res.body).have.property('entities')
+                                    expect(res.body).have.property('pageIndex')
+                                    expect(res.body.pageIndex).to.equal(0)
+                                    done()
+
+                                    // get all event
+                                });
+
                         });
 
                 });
